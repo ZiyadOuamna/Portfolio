@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
@@ -102,7 +102,7 @@ const filters = [
   { key: "trading", label: "Trading" },
 ] as const;
 
-export default function ProjectsPage() {
+function ProjectsContent() {
   const searchParams = useSearchParams();
   const [active, setActive] = useState<(typeof filters)[number]["key"]>("all");
 
@@ -171,6 +171,18 @@ export default function ProjectsPage() {
     </main>
     <Footer />
     </>
+  );
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-slate-400">Loading projects...</div>
+      </div>
+    }>
+      <ProjectsContent />
+    </Suspense>
   );
 }
 
