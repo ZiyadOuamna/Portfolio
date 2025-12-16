@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // GitHub Pages user site (ziyadouamna.github.io) - no basePath needed
-  basePath: '',
-  assetPrefix: '',
+  // GitHub Pages project repo (ziyadouamna.github.io/Portfolio)
+  basePath: '/Portfolio',
+  assetPrefix: '/Portfolio',
 };
 
 export default nextConfig;
