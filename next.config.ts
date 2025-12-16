@@ -7,9 +7,11 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Active uniquement en production pour GitHub Pages
-  basePath: isProd ? '/Portfolio' : '',
-  assetPrefix: isProd ? '/Portfolio/' : '',
+  // Active basePath uniquement si le repo n'est pas un user site GitHub Pages
+  // Pour user site (ziyadouamna.github.io): basePath: ''
+  // Pour project repo (Portfolio): basePath: '/Portfolio'
+  basePath: isProd ? '' : '',
+  assetPrefix: isProd ? '' : '',
 };
 
 export default nextConfig;
