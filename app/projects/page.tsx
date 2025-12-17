@@ -85,9 +85,9 @@ const allProjects: Project[] = [
     description: "Attractive and user-friendly menu design for a restaurant, highlighting various dishes with appealing visuals and organized layout.",
     tags: ["illustrator"],
     images: [
-      "/projects/Design/menu/travail final.png",
-      "/projects/Design/menu/le menu.png",
-      "/projects/Design/menu/ouverture de menu.png",
+      "/projects/Design/Menu/travail final.png",
+      "/projects/Design/Menu/le menu.png",
+      "/projects/Design/Menu/ouverture de menu.png",
     ]
   },
   { title: "Agency Home Page", 
@@ -141,6 +141,28 @@ const allProjects: Project[] = [
     tags: ["illustrator"],
     images: [
       "/projects/Design/Rotab+delice/c.png",
+    ]
+  },
+  
+  {
+    title: "Flyer Design for Event Promotion",
+    domain: "design",
+    description: "Eye-catching flyer design to promote a local event, utilizing vibrant colors and clear typography to attract attendees.",
+    tags: ["Photoshop"],
+    images: [
+      "/projects/RetoucheImg/2/retouchefinal.jpg",
+    ]
+  },
+  
+  {
+    title: "Cover film the conjurin",
+    domain: "design",
+    description: "Designing a captivating cover for the film 'The Conjurin' to intrigue and attract the target audience.",
+    tags: ["Photoshop"],
+    images: [
+      "/projects/RetoucheImg/conjurin/1 befor.png",
+      "/projects/RetoucheImg/conjurin/3 befor.jpeg",
+      "/projects/RetoucheImg/conjurin/the conjurin.png",
     ]
   },
   /*marketing*/
