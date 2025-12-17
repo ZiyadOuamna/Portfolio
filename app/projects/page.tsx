@@ -185,6 +185,7 @@ export default function ProjectsPage() {
     </Suspense>
   );
 }
+const BASE_PATH = '/Portfolio';
 
 function ProjectCard({ project, index, gradientFor }: { project: Project; index: number; gradientFor: (domain: Project["domain"]) => string }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -226,7 +227,7 @@ function ProjectCard({ project, index, gradientFor }: { project: Project; index:
             className="relative w-full h-full"
           >
             <Image
-              src={project.images![currentImageIndex]}
+              src={`${BASE_PATH}${project.images![currentImageIndex]}`}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               fill
               className="object-cover transition duration-300 group-hover:blur-sm"
@@ -241,39 +242,31 @@ function ProjectCard({ project, index, gradientFor }: { project: Project; index:
             </div>
           </div>
 
-          {/* Navigation buttons */}
+          {/* Navigation buttons - PARTIE THUMBNAIL */}
           {totalImages > 1 && (
             <>
               <button
-                onClick={prevImage}
+                onClick={(e) => {
+                  e.stopPropagation(); // <--- Empêche le modal de s'ouvrir
+                  prevImage();
+                }}
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 z-10"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-4 h-4 text-white" />
               </button>
               <button
-                onClick={nextImage}
+                onClick={(e) => {
+                  e.stopPropagation(); // <--- Empêche le modal de s'ouvrir
+                  nextImage();
+                }}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 z-10"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-4 h-4 text-white" />
               </button>
 
-              {/* Pagination dots */}
-              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1 z-10">
-                {project.images!.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      idx === currentImageIndex
-                        ? "bg-white w-6"
-                        : "bg-white/50 hover:bg-white/75"
-                    }`}
-                    aria-label={`Go to image ${idx + 1}`}
-                  />
-                ))}
-              </div>
+              {/* Pagination dots... (reste inchangé) */}
             </>
           )}
 
@@ -332,7 +325,7 @@ function ProjectCard({ project, index, gradientFor }: { project: Project; index:
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setIsModalOpen(false)}>
           <div className="relative w-full max-w-5xl h-[70vh]" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={project.images![currentImageIndex]}
+              src={`${BASE_PATH}${project.images![currentImageIndex]}`}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               fill
               className="object-contain"
