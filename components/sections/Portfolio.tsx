@@ -170,9 +170,9 @@ export default function Portfolio() {
           transition={{ delay: 0.6 }}
           className="text-center"
         >
-          <a href="/projects" className="px-6 py-2 text-sm border-2 border-indigo-500 text-indigo-500 dark:text-indigo-400 dark:border-indigo-400 rounded-full font-semibold hover:bg-indigo-500/10 transition-all duration-300">
+          <Link href="/projects/" className="px-6 py-2 text-sm border-2 border-indigo-500 text-indigo-500 dark:text-indigo-400 dark:border-indigo-400 rounded-full font-semibold hover:bg-indigo-500/10 transition-all duration-300">
             View All Projects
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

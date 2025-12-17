@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
+  // Ensure folder-based routes like /projects/index.html
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
