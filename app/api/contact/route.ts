@@ -11,7 +11,7 @@ interface ContactForm {
 
 export async function POST(req: Request) {
   try {
-    // Récupération des données du formulaire
+    // Récupération fjndfns des données du formulaire
     const { name, email, subject, message }: ContactForm = await req.json();
 
     // Validation des champs
