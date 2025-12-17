@@ -21,6 +21,21 @@ export default function Contact() {
     }));
   };
 
+  const openGmailCompose = () => {
+    const to = "ziyadouamna.service@gmail.com";
+    const subject = encodeURIComponent(`[Contact] ${formData.subject || "New message"}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${to}&su=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:${to}?subject=${subject}&body=${body}`;
+
+    const win = window.open(gmailUrl, "_blank");
+    if (!win) {
+      window.location.href = mailtoUrl;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -34,24 +49,13 @@ export default function Contact() {
       });
 
       if (!response.ok) {
-        const data = await response.json().catch(() => ({} as any));
-        // If email service is not configured, gracefully fallback to mailto
-        if (data?.error === "EMAIL_NOT_CONFIGURED") {
-          const to = "ziyadouamna.service@gmail.com";
-          const subject = encodeURIComponent(`[Contact] ${formData.subject || "New message"}`);
-          const body = encodeURIComponent(
-            `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-          );
-          // Open email client
-          window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-          // Show success and clear form
-          setSubmitStatus("success");
-          setFormData({ name: "", email: "", subject: "", message: "" });
-          setTimeout(() => setSubmitStatus("idle"), 5000);
-          setIsSubmitting(false);
-          return;
-        }
-        throw new Error(data?.message || "Failed to send message");
+        // Any failure → open Gmail compose directly
+        openGmailCompose();
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+        setIsSubmitting(false);
+        return;
       }
 
       setSubmitStatus("success");
@@ -59,7 +63,11 @@ export default function Contact() {
       setTimeout(() => setSubmitStatus("idle"), 5000);
     } catch (error) {
       console.error(error);
-      setSubmitStatus("error");
+      // Network or runtime error → open Gmail compose fallback
+      openGmailCompose();
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -207,8 +215,24 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-center"
                 >
-                  Something went wrong. Please try again or email me directly at
-                  <span className="font-semibold text-white"> ziyadouamna.service@gmail.com</span>.
+                  We couldn't send automatically. Opening Gmail so you can send your message.
+                  <div className="mt-2">
+                    <a
+                      href="https://mail.google.com/mail/?view=cm&to=ziyadouamna.service@gmail.com"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline text-white"
+                    >
+                      Open Gmail compose
+                    </a>
+                    <span className="mx-2">•</span>
+                    <a
+                      href="mailto:ziyadouamna.service@gmail.com"
+                      className="underline text-white"
+                    >
+                      Or use mailto
+                    </a>
+                  </div>
                 </motion.div>
               )}
             </form>
