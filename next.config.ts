@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   // GitHub Pages project repo deployment
   basePath: '/Portfolio',
   assetPrefix: '/Portfolio',
+  trailingSlash: true,
 };
 
 export default nextConfig;
