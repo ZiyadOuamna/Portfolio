@@ -49,18 +49,22 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (href: string) => {
+    // Fermer le menu immédiatement
+    setIsOpen(false);
+    setActive(href);
+    
     if (pathname !== "/") {
       router.push(`/${href}`);
-      setIsOpen(false);
-      setActive(href);
       return;
     }
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-      setActive(href);
-    }
+    
+    // Petit délai pour laisser le menu se fermer avant de scroller
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (

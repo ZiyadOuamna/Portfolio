@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   // GitHub Pages project repo deployment
   basePath: '/Portfolio',
   assetPrefix: '/Portfolio',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: '/Portfolio',
+  },
 };
 
 export default nextConfig;

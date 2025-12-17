@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/pathHelper";
 
 const roles = [
   "Full Stack Developer",
@@ -193,8 +194,8 @@ export default function Hero() {
               Get In Touch
             </button>
               <a
-                href="/cv.pdf"
-                download
+                href={getAssetPath("/CV Ziyad OUAMNA.pdf")}
+                download="CV Ziyad OUAMNA.pdf"
                 className="px-7 py-3.5 border-2 border-slate-400/70 rounded-full font-semibold text-base md:text-lg text-indigo-200 hover:bg-indigo-500/10 hover:border-indigo-400 transform hover:translate-y-[-1.5px] hover:scale-[1.03] transition-all duration-400 text-center"
               >
                 Download CV
