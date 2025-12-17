@@ -9,11 +9,14 @@ export default function Social() {
     { icon: Linkedin, href: "https://www.linkedin.com/in/ziyad-ouamna/", label: "LinkedIn" },
     { icon: Twitter, href: "https://x.com/ZiyadOuamna", label: "Twitter" },
     { icon: Instagram, href: "https://instagram.com/Ziyad_Ouamna_officiel", label: "Instagram" },
-    { icon: Mail, href: "mailto:ziyanouamna.servcie@gmail.com", label: "Email" },
+    { icon: Mail, href: "mailto:ziyadouamna.service@gmail.com", label: "Email" },
   ];
 
   return (
-    <section id="social" className="min-h-screen relative bg-white dark:bg-slate-950 flex items-center justify-center py-20">
+    <section 
+      id="social" 
+      className="min-h-screen relative bg-white dark:bg-slate-950 flex items-center justify-center py-20 transition-colors duration-300"
+    >
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col items-center">
         {/* Header */}
         <motion.div
@@ -29,7 +32,7 @@ export default function Social() {
               Me
             </span>
           </h2>
-          <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
             Connect with me on social media and stay updated with my latest projects and insights.
           </p>
         </motion.div>
@@ -48,10 +51,16 @@ export default function Social() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group w-20 h-20 bg-linear-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900 border border-slate-700 rounded-xl flex items-center justify-center hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30"
+                className="group w-20 h-20 
+                  bg-slate-50 dark:bg-slate-800 
+                  border border-slate-200 dark:border-slate-700 
+                  rounded-xl flex items-center justify-center 
+                  hover:scale-110 transition-all duration-300 
+                  hover:shadow-xl hover:shadow-indigo-500/30
+                  hover:border-indigo-500 dark:hover:border-indigo-400"
                 aria-label={social.label}
               >
-                <Icon className="w-8 h-8 text-slate-300 group-hover:text-white transition-colors" />
+                <Icon className="w-8 h-8 text-slate-600 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-white transition-colors" />
               </motion.a>
             );
           })}
@@ -63,7 +72,7 @@ export default function Social() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="w-32 h-1 bg-linear-to-r from-transparent via-indigo-500 to-transparent mt-16"
+          className="w-32 h-1 bg-linear-to-r from-transparent via-indigo-500 to-transparent mt-16 opacity-50"
         />
 
         {/* Bottom Text */}
@@ -72,7 +81,7 @@ export default function Social() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-8 text-slate-400 text-sm md:text-base max-w-xl text-center"
+          className="mt-8 text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-xl text-center"
         >
           Let&apos;s collaborate and create something amazing together. Feel free to reach out!
         </motion.p>

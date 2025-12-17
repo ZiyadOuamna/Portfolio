@@ -62,9 +62,11 @@ const projects = [
 ];
 
 export default function Portfolio() {
-  // Show a curated set of featured projects; filters removed by request
   return (
-    <section id="portfolio" className="relative bg-white dark:bg-slate-950 flex items-center justify-center py-8 md:py-12 md:min-h-screen">
+    <section 
+      id="portfolio" 
+      className="relative bg-slate-50 dark:bg-slate-950 flex items-center justify-center py-8 md:py-12 md:min-h-screen transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col items-center w-full md:h-full md:justify-start md:pt-18 pb-12 md:pb-0">
         {/* Header */}
         <motion.div
@@ -77,10 +79,9 @@ export default function Portfolio() {
           <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-2 md:mb-3">
             Featured Projects
           </h2>
-          <p className="text-slate-400 text-xs md:text-sm max-w-3xl mx-auto hidden md:block">
+          <p className="text-slate-600 dark:text-slate-400 text-xs md:text-sm max-w-3xl mx-auto hidden md:block">
             Explore my latest work across development, design, and marketing. Each project showcases my approach to solving real-world challenges with innovative solutions.
           </p>
-          {/* Filters removed; keep only bottom CTA */}
         </motion.div>
 
         {/* Projects Grid */}
@@ -98,7 +99,7 @@ export default function Portfolio() {
           transition={{ delay: 0.6 }}
           className="text-center mt-2 md:mt-4"
         >
-          <Link href="/projects/" className="px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-sm border-2 border-indigo-500 text-indigo-500 dark:text-indigo-400 dark:border-indigo-400 rounded-full font-semibold hover:bg-indigo-500/10 transition-all duration-300">
+          <Link href="/projects/" className="px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-sm border-2 border-indigo-500 text-indigo-500 hover:text-white dark:text-indigo-400 dark:border-indigo-400 rounded-full font-semibold hover:bg-indigo-500 dark:hover:bg-indigo-500/10 transition-all duration-300">
             View All Projects
           </Link>
         </motion.div>
@@ -143,11 +144,16 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative rounded-2xl overflow-hidden border dark:border-slate-700 border-slate-200 bg-white dark:bg-slate-800/50 hover:shadow-xl transition-shadow duration-300"
+      className="group relative rounded-2xl overflow-hidden 
+        bg-white dark:bg-slate-800/50 
+        border border-slate-200 dark:border-slate-700 
+        shadow-sm dark:shadow-none
+        hover:shadow-xl hover:border-indigo-200 dark:hover:border-slate-600
+        transition-all duration-300"
     >
       {/* Image */}
       <div 
-        className="relative h-32 md:h-48 bg-slate-900 overflow-hidden cursor-pointer"
+        className="relative h-32 md:h-48 bg-slate-100 dark:bg-slate-900 overflow-hidden cursor-pointer"
         onClick={() => hasImages && setIsModalOpen(true)}
       >
         {hasImages ? (
@@ -161,7 +167,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
               className="w-full h-full object-cover transition duration-300 group-hover:blur-sm"
             />
-            <div className={`absolute inset-0 bg-linear-to-br ${project.gradient} opacity-30`} />
+            <div className={`absolute inset-0 bg-linear-to-br ${project.gradient} opacity-10 dark:opacity-30 mix-blend-overlay`} />
 
             {/* Hover hint */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
@@ -181,7 +187,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   className="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 z-10"
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="w-4 h-4 text-white" />
+                  <ChevronLeft className="w-4 h-4 text-white drop-shadow-md" />
                 </button>
                 <button
                   onClick={(e) => {
@@ -191,7 +197,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 z-10"
                   aria-label="Next image"
                 >
-                  <ChevronRight className="w-4 h-4 text-white" />
+                  <ChevronRight className="w-4 h-4 text-white drop-shadow-md" />
                 </button>
 
                 {/* Image counter */}
@@ -204,18 +210,16 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         ) : (
           <>
             <div className={`w-full h-full bg-linear-to-br ${project.gradient}`} />
-            <div className="absolute inset-0 flex items-center justify-center text-slate-300 font-bold text-sm">
+            <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
               {project.category}
             </div>
           </>
         )}
-
-
       </div>
 
       {/* Content */}
       <div className="p-3 md:p-3">
-        <span className={`text-xs font-semibold px-2 py-0.5 bg-linear-to-r ${project.gradient} bg-opacity-10 rounded-full inline-block mb-2`}>
+        <span className={`text-xs font-semibold px-2 py-0.5 bg-linear-to-r ${project.gradient} bg-opacity-10 rounded-full inline-block mb-2 text-slate-700 dark:text-slate-200`}>
           {project.category}
         </span>
 
@@ -232,7 +236,11 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           {project.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[11px] px-2 py-0.5 dark:bg-slate-700/50 bg-slate-200 dark:text-slate-300 text-slate-700 rounded-full"
+              className="text-[11px] px-2 py-0.5 
+                bg-slate-100 dark:bg-slate-700/50 
+                text-slate-600 dark:text-slate-300 
+                border border-slate-200 dark:border-transparent
+                rounded-full"
             >
               {tag}
             </span>

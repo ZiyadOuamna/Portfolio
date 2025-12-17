@@ -8,26 +8,23 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check saved preference or system preference
+    // 1. Vérifier s'il y a une préférence sauvegardée
     const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = (saved as "dark" | "light") || (prefersDark ? "dark" : "light");
+    
+    // 2. LOGIQUE CLÉ : Si rien n'est sauvegardé, on force "dark" par défaut
+    // (On ignore la préférence système pour imposer ton style sombre)
+    const initial = (saved as "dark" | "light") || "dark";
 
     setTheme(initial);
     setMounted(true);
 
-    // Apply theme immediately
+    // Appliquer le thème immédiatement au HTML
     const root = document.documentElement;
-    const body = document.body;
     if (initial === "dark") {
       root.classList.add("dark");
-      body.classList.add("dark");
     } else {
       root.classList.remove("dark");
-      body.classList.remove("dark");
     }
-    root.dataset.theme = initial;
-    body.dataset.theme = initial;
   }, []);
 
   const toggle = () => {
@@ -38,16 +35,11 @@ export default function ThemeToggle() {
     localStorage.setItem("theme", next);
 
     const root = document.documentElement;
-    const body = document.body;
     if (next === "dark") {
       root.classList.add("dark");
-      body.classList.add("dark");
     } else {
       root.classList.remove("dark");
-      body.classList.remove("dark");
     }
-    root.dataset.theme = next;
-    body.dataset.theme = next;
   };
 
   if (!mounted || !theme) return null;
@@ -56,10 +48,15 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className="flex items-center gap-2 px-3 py-2 rounded-full border transition-colors dark:border-slate-700 border-slate-300 dark:text-slate-300 text-slate-700 dark:hover:text-white hover:text-slate-900 dark:hover:border-slate-600 hover:border-slate-400"
+      className="p-2 rounded-full transition-all duration-300 
+      bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700
+      dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-slate-300"
     >
-      {theme === "dark" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-      <span className="text-sm hidden sm:inline">{theme === "dark" ? "Dark" : "Light"}</span>
+      {theme === "dark" ? (
+        <Sun className="w-5 h-5 text-yellow-400" />
+      ) : (
+        <Moon className="w-5 h-5 text-indigo-600" />
+      )}
     </button>
   );
 }

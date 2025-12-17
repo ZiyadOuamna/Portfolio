@@ -30,7 +30,6 @@ export default function Footer() {
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
     { name: "Contact", href: "#contact" },
-    { name: "Follow Me", href: "#social" },
   ];
 
   const services = [
@@ -44,7 +43,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="footer" className="relative bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 border-t dark:border-slate-800 border-slate-200">
+    <footer 
+      id="footer" 
+      className="relative bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 text-center md:text-left">
           {/* Brand */}
@@ -60,26 +62,26 @@ export default function Footer() {
                   Ziyad OUAMNA
                 </span>
               </div>
-              <p className="text-slate-400 max-w-md mb-4 text-justify md:text-left">
+              <p className="text-slate-600 dark:text-slate-400 max-w-md mb-4 text-justify md:text-left text-sm leading-relaxed">
                 I'm a young Moroccan professional passionate about web development, 
                 graphic design, and digital marketing. 
                 Holding a two-year technical degree (BTS) in multimedia and web design, 
                 I'm currently pursuing a bachelor's degree in software engineering. 
                 I combine creativity and technical skills to create modern websites, 
                 comprehensive visual identities, and customized digital solutions.
-
-Also active in trading and digital entrepreneurship, I work on various personal projects, including web platforms, advertising campaigns, and freelance services. Known for my motivation and versatility, I always strive to ensure quality and innovation in every project.    
+                <br /><br />
+                Also active in trading and digital entrepreneurship, I work on various personal projects, including web platforms, advertising campaigns, and freelance services. Known for my motivation and versatility, I always strive to ensure quality and innovation in every project.    
               </p>
-              <div className="flex items-center gap-2 text-sm text-slate-500 md:justify-start justify-center">
+              <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-500 md:justify-start justify-center">
                 <span>Made with</span>
                 <Heart className="w-4 h-4 text-pink-500 fill-current" />
-                <span>Ziyad OUAMNA</span>
+                <span>by Ziyad OUAMNA</span>
               </div>
             </motion.div>
           </div>
 
           {/* Quick Links & Services - Combined on Mobile */}
-          <div className="md:col-span-2 lg:col-span-2 flex flex-row gap-8 md:gap-4">
+          <div className="md:col-span-2 lg:col-span-2 flex flex-row gap-8 md:gap-4 justify-center md:justify-start">
             {/* Quick Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -88,7 +90,7 @@ Also active in trading and digital entrepreneurship, I work on various personal 
               transition={{ delay: 0.1 }}
               className="flex-1 text-center md:text-left"
             >
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+              <h3 className="text-lg font-bold mb-4 text-slate-900 dark:text-white">Quick Links</h3>
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
@@ -101,7 +103,7 @@ Also active in trading and digital entrepreneurship, I work on various personal 
                         const element = document.querySelector(link.href);
                         element?.scrollIntoView({ behavior: "smooth" });
                       }}
-                      className="text-slate-400 hover:text-white transition-colors"
+                      className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors text-sm"
                     >
                       {link.name}
                     </button>
@@ -118,10 +120,10 @@ Also active in trading and digital entrepreneurship, I work on various personal 
               transition={{ delay: 0.2 }}
               className="flex-1 text-center md:text-left"
             >
-              <h3 className="text-lg font-bold mb-4">Services</h3>
+              <h3 className="text-lg font-bold mb-4 text-slate-900 dark:text-white">Services</h3>
               <ul className="space-y-2">
                 {services.map((service) => (
-                  <li key={service} className="text-slate-400">
+                  <li key={service} className="text-slate-600 dark:text-slate-400 text-sm">
                     {service}
                   </li>
                 ))}
@@ -136,16 +138,16 @@ Also active in trading and digital entrepreneurship, I work on various personal 
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left"
+          className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left"
         >
-          <p className="text-slate-500 text-sm">
+          <p className="text-slate-500 dark:text-slate-500 text-sm">
             © {currentYear} Ziyad OUAMNA. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-slate-500 md:flex-row flex-col gap-3 md:gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+          <div className="flex gap-6 text-sm text-slate-500 dark:text-slate-500 md:flex-row flex-col gap-3 md:gap-6">
+            <a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-indigo-600 dark:hover:text-white transition-colors">
               Terms of Service
             </a>
           </div>

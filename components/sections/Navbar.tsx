@@ -1,10 +1,10 @@
 "use client";
 
+import ThemeToggle from "../ui/ThemeToggle";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Code2, Palette, TrendingUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-// Theme toggle removed; site is locked to dark mode
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -28,8 +28,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Determine active section
-      const sections = navItems.map(i => i.href);
+      const sections = navItems.map((i) => i.href);
       let current = "#home";
       for (const href of sections) {
         const el = document.querySelector(href) as HTMLElement | null;
@@ -49,16 +48,14 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (href: string) => {
-    // Fermer le menu immédiatement
     setIsOpen(false);
     setActive(href);
-    
+
     if (pathname !== "/") {
       router.push(`/${href}`);
       return;
     }
-    
-    // Petit délai pour laisser le menu se fermer avant de scroller
+
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
@@ -74,7 +71,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "dark:bg-slate-950/95 bg-white/80 backdrop-blur-md shadow-lg border-b dark:border-slate-800 border-slate-200"
+          ? "bg-white/80 border-slate-200 dark:bg-slate-950/95 dark:border-slate-800 backdrop-blur-md shadow-lg border-b"
           : "bg-transparent"
       }`}
     >
@@ -102,7 +99,7 @@ export default function Navbar() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-7 items-center ml-auto mr-2 md:mr-4 w-full justify-end">
+          <div className="hidden md:flex gap-6 items-center ml-auto mr-2 md:mr-4 w-full justify-end">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.name}
@@ -110,35 +107,56 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(item.href)}
-                className={`transition-colors relative group ${active === item.href ? "text-white" : "text-slate-300 hover:text-white"}`}
-                aria-current={active === item.href ? "page" : undefined}
+                className={`transition-colors relative group font-medium ${
+                  active === item.href
+                    ? "text-indigo-600 dark:text-white"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                }`}
               >
                 {item.name}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-linear-to-r from-indigo-500 to-pink-500 transition-all duration-300 ${active === item.href ? "w-full" : "w-0 group-hover:w-full"}`} />
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-linear-to-r from-indigo-500 to-pink-500 transition-all duration-300 ${
+                    active === item.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
               </motion.button>
             ))}
-            {/* Theme toggle removed */}
+
+            {/* Toggle Button ADDED HERE */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              <ThemeToggle />
+            </motion.div>
+
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
               onClick={() => scrollToSection("#contact")}
-              className="px-6 py-2 bg-linear-to-r from-indigo-500 to-pink-500 rounded-full font-semibold hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300"
+              className="px-6 py-2 bg-linear-to-r from-indigo-500 to-pink-500 rounded-full font-semibold text-white hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300"
             >
               Let&apos;s Talk
             </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2 ml-auto"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          <div className="flex items-center gap-4 md:hidden ml-auto">
+             {/* Toggle Button for Mobile */}
+            <ThemeToggle />
+            
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-slate-900 dark:text-white p-2"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          </div>
         </div>
       </div>
 
@@ -150,7 +168,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-slate-950/98 backdrop-blur-md border-t border-slate-800"
+            className="md:hidden bg-white/98 dark:bg-slate-950/98 backdrop-blur-md border-t border-slate-200 dark:border-slate-800"
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item, index) => (
@@ -160,18 +178,22 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 * index }}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-slate-300 hover:text-white py-2 transition-colors"
+                  className={`block w-full text-left py-2 transition-colors ${
+                    active === item.href
+                      ? "text-indigo-600 dark:text-white font-bold"
+                      : "text-slate-700 dark:text-slate-300"
+                  }`}
                 >
                   {item.name}
                 </motion.button>
               ))}
-              {/* Theme toggle removed */}
+              
               <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
                 onClick={() => scrollToSection("#contact")}
-                className="w-full px-6 py-3 bg-linear-to-r from-indigo-500 to-pink-500 rounded-full font-semibold hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300"
+                className="w-full px-6 py-3 bg-linear-to-r from-indigo-500 to-pink-500 rounded-full font-semibold text-white hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300"
               >
                 Let&apos;s Talk
               </motion.button>

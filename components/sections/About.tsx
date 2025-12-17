@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Code2, Palette, TrendingUp, Sparkles } from "lucide-react";
+import Image from "next/image"; // J'utilise next/image c'est mieux si possible, sinon garde img
+// Si tu as le helper, tu peux l'importer, sinon laisse le src en dur comme tu as fait
+// import { getAssetPath } from "@/lib/pathHelper"; 
 
 const skills = [
   { icon: Code2, label: "Development", color: "indigo" },
@@ -26,9 +29,12 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="min-h-screen md:min-h-screen relative overflow-visible bg-slate-100 dark:bg-slate-900 flex items-start pt-20 pb-4 md:py-0 md:items-center">
+    <section 
+      id="about" 
+      className="min-h-screen md:min-h-screen relative overflow-visible bg-slate-50 dark:bg-slate-900 flex items-start pt-20 pb-4 md:py-0 md:items-center transition-colors duration-300"
+    >
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-slate-900/50 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-slate-200/50 dark:via-slate-900/50 to-transparent pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
@@ -38,18 +44,16 @@ export default function About() {
           variants={containerVariants}
           className="text-center mb-4 md:mb-15 mt-2 md:mt-12"
         >
-
-          
           <motion.h2
             variants={itemVariants}
-            className="text-2xl md:text-4xl lg:text-4xl font-bold mb-1.5 md:mb-4"
+            className="text-2xl md:text-4xl lg:text-4xl font-bold mb-1.5 md:mb-4 text-slate-900 dark:text-white"
           >
             The <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Hybrid</span> Approach
           </motion.h2>
           
           <motion.p
             variants={itemVariants}
-            className="text-slate-400 text-[11px] md:text-lg max-w-2xl mx-auto leading-relaxed"
+            className="text-slate-600 dark:text-slate-400 text-[11px] md:text-lg max-w-2xl mx-auto leading-relaxed"
           >
             I don&apos;t just build products — I craft experiences that blend clean architecture,
             stunning visuals, and strategic marketing to drive real results.
@@ -65,10 +69,10 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative w-full aspect-square max-w-56 md:max-w-sm mx-auto">
+            <div className="relative w-full aspect-square max-w-56 md:max-w-sm mx-auto group">
               {/* User profile image */}
-                <div className="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl" />
-                <div className="absolute inset-px bg-slate-900 rounded-2xl items-center justify-center overflow-hidden flex">
+                <div className="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-px bg-white dark:bg-slate-900 rounded-2xl items-center justify-center overflow-hidden flex transition-colors duration-300">
                   <img
                     src="/Portfolio/ziyad.png"
                     alt="Ziyad"
@@ -80,14 +84,14 @@ export default function About() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-indigo-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-semibold shadow-lg text-[11px] md:text-base"
+                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-indigo-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-semibold shadow-lg text-[11px] md:text-base z-10"
               >
                 5+ Years
               </motion.div>
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-pink-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-semibold shadow-lg text-[11px] md:text-base"
+                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-pink-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-semibold shadow-lg text-[11px] md:text-base z-10"
               >
                 50+ Projects
               </motion.div>
@@ -103,13 +107,13 @@ export default function About() {
             className="space-y-1.5 md:space-y-5"
           >
             <div className="space-y-2 md:space-y-4">
-              <h3 className="text-base md:text-2xl font-bold text-center md:text-left">
+              <h3 className="text-base md:text-2xl font-bold text-center md:text-left text-slate-900 dark:text-white">
                 Building Digital Excellence
               </h3>
-              <p className="text-slate-400 leading-relaxed text-[11px] md:text-base text-justify">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px] md:text-base text-justify">
                 As a full-stack developer, I combine my technical skills with a creative approach to deliver complete digital solutions. Whether it&apos;s web development, mobile applications, UI/UX design, or even brand identity creation, I handle every step of the development process to turn your ideas into tangible projects.
               </p>
-              <p className="text-slate-400 leading-relaxed text-[11px] md:text-base text-justify">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px] md:text-base text-justify">
                 I also place a strong emphasis on ensuring an optimal user experience, by combining modern technologies with effective design practices. My user-centered approach and digital marketing expertise enable me to create interactive and engaging experiences while ensuring strong online visibility for my clients.
               </p>
             </div>
@@ -131,12 +135,18 @@ export default function About() {
                     whileHover={{ scale: 1.05 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="text-center p-2 md:p-3.5 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-slate-600 transition-all duration-300"
+                    className="text-center p-2 md:p-3.5 
+                      bg-white dark:bg-slate-800/50 
+                      border border-slate-200 dark:border-slate-700 
+                      rounded-xl 
+                      hover:border-indigo-400 dark:hover:border-slate-600 
+                      shadow-sm dark:shadow-none
+                      transition-all duration-300"
                   >
-                    <div className={`w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 md:mb-2.5 bg-linear-to-br ${colors[skill.color as keyof typeof colors]} rounded-lg flex items-center justify-center`}>
+                    <div className={`w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 md:mb-2.5 bg-linear-to-br ${colors[skill.color as keyof typeof colors]} rounded-lg flex items-center justify-center shadow-md`}>
                       <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
                     </div>
-                    <p className="text-[11px] md:text-sm font-semibold text-slate-300">{skill.label}</p>
+                    <p className="text-[11px] md:text-sm font-semibold text-slate-700 dark:text-slate-300">{skill.label}</p>
                   </motion.div>
                 );
               })}
