@@ -210,31 +210,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </>
         )}
 
-        {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Github className="w-5 h-5" />
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink className="w-5 h-5" />
-            </a>
-          )}
-        </div>
+
       </div>
 
       {/* Content */}
