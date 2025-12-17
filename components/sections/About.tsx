@@ -70,7 +70,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl" />
                 <div className="absolute inset-px bg-slate-900 rounded-2xl items-center justify-center overflow-hidden flex">
                   <img
-                    src="/ziyad.png"
+                    src="/Portfolio/ziyad.png"
                     alt="Ziyad"
                     className="object-contain w-full h-full rounded-2xl"
                   />

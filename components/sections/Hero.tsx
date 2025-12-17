@@ -96,7 +96,7 @@ export default function Hero() {
             />
             <div className="absolute -left-12 w-full rounded-xl shadow-2xl shadow-indigo-900/25 dark:shadow-black/30 overflow-hidden border border-slate-200/60 dark:border-slate-800/80 bg-transparent backdrop-blur-[2px] bottom-8">
               <Image
-                src="/profile.png"
+                src="/Portfolio/profile.png"
                 alt="Ziyad Ouamna"
                 width={400}
                 height={500}
