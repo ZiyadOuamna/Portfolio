@@ -111,6 +111,18 @@ const allProjects: Project[] = [
       "/projects/Design/BTS/appreciation-2.png",
     ]
   },
+  
+  {
+    title: "Cover film the conjurin",
+    domain: "design",
+    description: "Designing a captivating cover for the film 'The Conjurin' to intrigue and attract the target audience.",
+    tags: ["Photoshop"],
+    images: [
+      "/projects/RetoucheImg/conjurin/the conjurin.png",
+      "/projects/RetoucheImg/conjurin/1 befor.png",
+      "/projects/RetoucheImg/conjurin/3 befor.jpeg",
+    ]
+  },
   { 
     title: "Book Cover Design", 
     domain: "design", 
@@ -154,17 +166,6 @@ const allProjects: Project[] = [
     ]
   },
   
-  {
-    title: "Cover film the conjurin",
-    domain: "design",
-    description: "Designing a captivating cover for the film 'The Conjurin' to intrigue and attract the target audience.",
-    tags: ["Photoshop"],
-    images: [
-      "/projects/RetoucheImg/conjurin/1 befor.png",
-      "/projects/RetoucheImg/conjurin/3 befor.jpeg",
-      "/projects/RetoucheImg/conjurin/the conjurin.png",
-    ]
-  },
   /*marketing*/
   { title: "SaaS SEO Campaign", 
     domain: "marketing", 
