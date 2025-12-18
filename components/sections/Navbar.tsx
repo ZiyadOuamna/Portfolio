@@ -12,6 +12,8 @@ const navItems = [
   { name: "Services", href: "#services" },
   { name: "Why Choose Me", href: "#why" },
   { name: "Portfolio", href: "#portfolio" },
+  { name: "Technologies", href: "#technologies" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
   { name: "Follow Me", href: "#social" },
   { name: "Footer", href: "#footer" },

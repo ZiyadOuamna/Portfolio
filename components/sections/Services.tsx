@@ -69,9 +69,9 @@ export default function Services() {
   };
 
   return (
-    <section 
-      id="services" 
-      className="min-h-screen md:min-h-screen relative bg-slate-50 dark:bg-slate-900 flex items-start pt-24 pb-6 md:py-0 md:items-center overflow-visible transition-colors duration-300"
+    <section
+      id="services"
+      className="min-h-screen md:min-h-screen relative bg-white dark:bg-slate-950 flex items-start pt-24 pb-6 md:py-0 md:items-center overflow-visible transition-colors duration-300"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
